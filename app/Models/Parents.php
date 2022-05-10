@@ -14,4 +14,8 @@ class Parents extends Model {
         'pekerjaan_ayah',
         'alamat'
     ];
+
+    public function baby() {
+        return $this->hasMany(Baby::class);
+    }
 }
