@@ -72,3 +72,77 @@ Route::group(['middleware' => ['auth','verified']], function () {
         Route::put('assign-user/{user}', [AssignUserToRoleController::class, 'update'])->name('assign.user.update');
     });
 });
+
+
+// admin
+// roles 
+Route::get('/role/create', function(){
+    return view('admin.roles.create');
+});
+
+Route::get('/role', function(){
+    $users = User::paginate(0);
+    return view('admin.roles.index', compact('users'));
+});
+
+Route::get('/role/edit/{id}', function(){
+    return view('admin.roles.edit');
+});
+
+// users
+Route::get('/user/create', function(){
+    return view('admin.users.create');
+});
+
+Route::get('/user', function(){
+    $users = User::paginate(0);
+    return view('admin.users.index', compact('users'));
+});
+
+Route::get('/user/edit/{id}', function(){
+    $user = User::find(1);
+    return view('admin.users.edit', compact('user'));
+});
+
+// vaccine
+Route::get('/vaccine/create', function(){
+    return view('admin.vaccines.create');
+});
+
+Route::get('/vaccine', function(){
+    $users = User::paginate(0);
+    return view('admin.vaccines.index', compact('users'));
+});
+
+Route::get('/vaccine/edit/{id}', function(){
+    return view('admin.vaccines.edit');
+});
+
+
+// staff
+Route::get('/baby/create', function(){
+    return view('staff.babies.create');
+});
+
+Route::get('/baby', function(){
+    $users = User::paginate(0);
+    return view('staff.babies.index', compact('users'));
+});
+
+Route::get('/baby/edit/{id}', function(){
+    return view('staff.babies.edit');
+});
+
+// imunization
+Route::get('/imunization/create', function(){
+    return view('staff.imunizations.create');
+});
+
+Route::get('/imunization', function(){
+    $users = User::paginate(0);
+    return view('staff.imunizations.index', compact('users'));
+});
+
+Route::get('/imunization/edit/{id}', function(){
+    return view('staff.imunizations.edit');
+});
