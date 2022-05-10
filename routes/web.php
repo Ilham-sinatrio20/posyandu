@@ -73,6 +73,13 @@ Route::group(['middleware' => ['auth','verified']], function () {
     });
 });
 
+Route::get('/page', function(){
+    return view('home.home');
+});
+
+Route::get('/page-red', function(){
+    return view('home.home-red');
+});
 
 // admin
 // roles 
