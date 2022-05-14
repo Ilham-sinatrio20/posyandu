@@ -14,6 +14,8 @@ use App\Http\Controllers\RoleAndPermission\RoleController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,10 +26,6 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('auth/login');
-});
 
 Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/dashboard', function () {
@@ -73,7 +71,7 @@ Route::group(['middleware' => ['auth','verified']], function () {
     });
 });
 
-Route::get('/page', function(){
+Route::get('/', function(){
     return view('home.home');
 });
 
@@ -153,3 +151,7 @@ Route::get('/imunization', function(){
 Route::get('/imunization/edit/{id}', function(){
     return view('staff.imunizations.edit');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
